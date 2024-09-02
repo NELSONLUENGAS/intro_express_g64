@@ -1,4 +1,4 @@
-const { getUsers } = require('../controllers/user.controller')
+const { getTodos, createToDo } = require('../controllers/todos.controller')
 
 const router = require('express').Router()
 
@@ -19,6 +19,9 @@ router.get('/staff', function (req, res) {
     res.send('Staff')
 })
 
-router.get('/users', getUsers)
+// router.get('/users', getUsers)
+router.get('/todos', getTodos)
+
+router.post('/todos', createToDo)
 
 module.exports = router
