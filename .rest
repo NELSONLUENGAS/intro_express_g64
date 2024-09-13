@@ -1,0 +1,10 @@
+#POST CLIENTS
+
+POST http://localhost:5000/client
+
+{
+    "nombre": "Sebastian"
+}
+
+###
+GET http://localhost:5000/client?limit=5&offset=5&order=id_ASC
