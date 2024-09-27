@@ -31,6 +31,28 @@ const createTables = async () => {
         );
         `
     )
+
+    await db.query(
+        `
+        CREATE TABLE IF NOT EXISTS users (
+            id SERIAL,
+            email VARCHAR(50) NOT NULL,
+            password VARCHAR(60) NOT NULL
+        );
+        `
+    )
+
+    await db.query(
+        `
+        CREATE TABLE IF NOT EXISTS books (
+            id SERIAL,
+            title VARCHAR(50) NOT NULL UNIQUE,
+            book_description VARCHAR(250) NOT NULL,
+            author VARCHAR(250) NOT NULL
+        );
+        `
+    )
+
 }
 
 const insertData = async () => {
@@ -43,6 +65,33 @@ const insertData = async () => {
             (DEFAULT, 'Todo 3', TRUE),
             (DEFAULT, 'Todo 4', DEFAULT)
         ON CONFLICT (titulo)
+        DO NOTHING;
+        `
+    )
+
+    await db.query(
+        `
+        INSERT INTO books (
+            title,
+            book_description,
+            author
+        )
+        values (
+            'Libro1',
+            'Descripción libro 1',
+            'Autor libro 1'
+        ),
+        (
+            'Libro2',
+            'Descripción libro 2',
+            'Autor libro 2'
+        ),
+        (
+            'Libro3',
+            'Descripción libro 3',
+            'Autor libro 3'
+        )
+        ON CONFLICT (title)
         DO NOTHING;
         `
     )

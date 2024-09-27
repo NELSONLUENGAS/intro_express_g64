@@ -1,5 +1,6 @@
-const { handleFetchClients } = require('../controllers/clients.controller')
+const { handleFetchClients, handleRegister, handleLogin, handleDeleteUser } = require('../controllers/clients.controller')
 const { getTodos, createToDo, deleteToDo, updateToDo } = require('../controllers/todos.controller')
+const { authMiddleware } = require('../middlewares/authMiddleware')
 const { handleLog } = require('../middlewares/handleLog')
 const { ClientValidator } = require('../validators/client.validator')
 
@@ -39,5 +40,12 @@ router.post('/client', ClientValidator, (req, res) => {
 })
 
 router.get('/client', handleFetchClients)
+
+
+router.post('/register', handleRegister)
+router.post('/login', handleLogin)
+
+router.delete('/users/:id', authMiddleware, handleDeleteUser)
+
 
 module.exports = router

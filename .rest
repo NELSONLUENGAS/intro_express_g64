@@ -8,3 +8,11 @@ POST http://localhost:5000/client
 
 ###
 GET http://localhost:5000/client?limit=5&offset=5&order=id_ASC
+
+###
+POST http://localhost:5000/register
+
+{
+    "email": "test@test.com",
+    "password": "12345"
+}
